@@ -3,19 +3,35 @@
            https://api.github.com/users/<your name>
 */
 
+const mainCardDiv = document.querySelector(".cards");
+
 axios
   .get("https://api.github.com/users/tiffany-simionescu")
   .then(function(response) {
-    // handle success
     console.log(response);
+    response.data.forEach(item => {
+      const newCard = githubCardCreator(item);
+      mainCardDiv.appendChild(newCard);
+    });
   })
   .catch(function(error) {
-    // handle error
-    console.log(error);
-  })
-  .finally(function() {
-    // always executed
+    console.log(error, "error");
   });
+
+// axios
+//   .get("https://api.github.com/users/tiffany-simionescu")
+//   .then(function(response) {
+//     console.log(response.data);
+//     let newCard = githubCardCreator(response.data);
+//     mainCardDiv.appendChild(newCard);
+//   })
+//   .catch(function(error) {
+//     // handle error
+//     console.log(error);
+//   })
+//   .finally(function() {
+//     // always executed
+//   });
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -62,7 +78,7 @@ const followersArray = [];
 
 function githubCardCreator(obj) {
   // Create all elements
-  const cardDiv = document.querySelector(".card");
+  const cardDiv = document.createElement("div");
   const userImg = document.createElement("img");
   const cardInfo = document.createElement("div");
   const name = document.createElement("h3");
