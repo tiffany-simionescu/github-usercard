@@ -115,7 +115,6 @@ function githubCardCreator(obj) {
   username.classList.add("username");
 
   // Create Event Handlers
-  // None
 
   return cardDiv;
 }
@@ -127,3 +126,33 @@ function githubCardCreator(obj) {
   luishrd
   bigknell
 */
+
+// STRETCH
+
+// Calendar Image Component - Function Constructor
+
+function calendarImg() {
+  // Create all elements
+  const calendarDiv = document.createElement("div");
+  const cards = document.querySelector(".cards");
+  const calendar = document.createElement("img");
+  const calendarText = document.createElement("h3");
+
+  // Create Structure
+  cards.prepend(calendarDiv);
+  calendarDiv.appendChild(calendarText);
+  calendarDiv.appendChild(calendar);
+
+  /// Set the Content
+  calendarText.textContent = "Tiffany Simionescu's Github Calendar";
+  calendar.setAttribute("src", "https://ghchart.rshah.org/tiffany-simionescu");
+  calendar.setAttribute("alt", "tiffany-simionescu's Github Chart");
+
+  // Apply Styles
+  calendar.classList.add("card");
+  calendarText.classList.add("calendarText");
+
+  return calendarDiv;
+}
+
+mainCardDiv.appendChild(calendarImg());
