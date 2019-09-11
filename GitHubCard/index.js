@@ -60,6 +60,53 @@ const followersArray = [];
 
 */
 
+function githubCardCreator(obj) {
+  // Create all elements
+  const cardDiv = document.querySelector(".card");
+  const userImg = document.createElement("img");
+  const cardInfo = document.createElement("div");
+  const name = document.createElement("h3");
+  const username = document.createElement("p");
+  const location = document.createElement("p");
+  const profile = document.createElement("p");
+  const profileLink = document.createElement("a");
+  const followers = document.createElement("p");
+  const following = document.createElement("p");
+  const bio = document.createElement("p");
+
+  // Create Structure
+  cardDiv.appendChild(userImg);
+  cardDiv.appendChild(cardInfo);
+  cardInfo.appendChild(name);
+  cardInfo.appendChild(username);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  profile.appendChild(profileLink);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+
+  // Set the Content
+  userImg.setAttribute("src", obj.avatar_url);
+  name.textContent = obj.name;
+  username.textContent = obj.login;
+  location.textContent = "Location: " + obj.location;
+  profileLink.setAttribute("src", obj.html_url);
+  profile.textContent = "Profile: " + profileLink;
+  followers.textContent = "Followers: " + obj.followers;
+  following.textContent = "Following: " + obj.following;
+  bio.textContent = "Bio: " + obj.bio;
+
+  // Apply Styles
+  cardDiv.classList.add("card");
+  cardInfo.classList.add("card-info");
+  name.classList.add("name");
+  username.classList.add("username");
+
+  // Create Event Handlers
+  // None
+}
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
