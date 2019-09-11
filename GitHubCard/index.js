@@ -3,16 +3,6 @@
            https://api.github.com/users/<your name>
 */
 
-const mainCardDiv = document.querySelector(".cards");
-
-axios
-  .get("https://api.github.com/users/tiffany-simionescu")
-
-  .then(response => {
-    console.log(response.data);
-    mainCardDiv.appendChild(githubCardCreator(response.data));
-  });
-
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -24,6 +14,16 @@ axios
            create a new component and add it to the DOM as a child of .cards
 */
 
+const mainCardDiv = document.querySelector(".cards");
+
+axios
+  .get("https://api.github.com/users/tiffany-simionescu")
+
+  .then(response => {
+    console.log(response.data);
+    mainCardDiv.appendChild(githubCardCreator(response.data));
+  });
+
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
           , manually find some other users' github handles, or use the list found 
@@ -34,7 +34,22 @@ axios
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  "DeniseChaloupka",
+  "LittleBoGeek",
+  "nathan-loveless",
+  "michaelagard"
+];
+
+followersArray.forEach(follower => {
+  axios
+    .get(`https://api.github.com/users/${follower}`)
+
+    .then(response => {
+      console.log(response.data);
+      mainCardDiv.appendChild(githubCardCreator(response.data));
+    });
+});
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
