@@ -7,31 +7,11 @@ const mainCardDiv = document.querySelector(".cards");
 
 axios
   .get("https://api.github.com/users/tiffany-simionescu")
-  .then(function(response) {
-    console.log(response);
-    response.data.forEach(item => {
-      const newCard = githubCardCreator(item);
-      mainCardDiv.appendChild(newCard);
-    });
-  })
-  .catch(function(error) {
-    console.log(error, "error");
-  });
 
-// axios
-//   .get("https://api.github.com/users/tiffany-simionescu")
-//   .then(function(response) {
-//     console.log(response.data);
-//     let newCard = githubCardCreator(response.data);
-//     mainCardDiv.appendChild(newCard);
-//   })
-//   .catch(function(error) {
-//     // handle error
-//     console.log(error);
-//   })
-//   .finally(function() {
-//     // always executed
-//   });
+  .then(response => {
+    console.log(response.data);
+    mainCardDiv.appendChild(githubCardCreator(response.data));
+  });
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -121,6 +101,8 @@ function githubCardCreator(obj) {
 
   // Create Event Handlers
   // None
+
+  return cardDiv;
 }
 
 /* List of LS Instructors Github username's: 
