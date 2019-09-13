@@ -16,13 +16,26 @@
 
 const mainCardDiv = document.querySelector(".cards");
 
-axios
-  .get("https://api.github.com/users/tiffany-simionescu")
+// axios
+//   .get("https://api.github.com/users/tiffany-simionescu")
 
-  .then(response => {
+//   .then(response => {
+//     console.log(response.data);
+//     mainCardDiv.appendChild(githubCardCreator(response.data));
+//   });
+
+// Async Function
+myCard = async url => {
+  try {
+    let response = await axios.get(url);
     console.log(response.data);
     mainCardDiv.appendChild(githubCardCreator(response.data));
-  });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+myCard("https://api.github.com/users/tiffany-simionescu");
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -40,6 +53,16 @@ const followersArray = [
   "nathan-loveless",
   "michaelagard"
 ];
+
+// followersArray.forEach(follower => {
+//   axios
+//     .get(`https://api.github.com/users/${follower}`)
+
+//     .then(response => {
+//       console.log(response.data);
+//       mainCardDiv.appendChild(githubCardCreator(response.data));
+//     });
+// });
 
 followersArray.forEach(follower => {
   axios
